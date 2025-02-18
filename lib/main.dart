@@ -7,13 +7,19 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: LoginScreen(), // 로그인 화면을 초기 화면으로 설정
+      theme: ThemeData(
+        // 앱의 전체적인 테마 설정
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
+      // 기존의 MyHomePage 대신 LoginScreen으로 변경
+      home: LoginScreen(), // 로그인 화면으로 연결
     );
   }
 }
