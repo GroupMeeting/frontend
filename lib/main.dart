@@ -1,23 +1,40 @@
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/dashboard_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Firebase 초기화
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // runApp에서 const 제거
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  // 생성자에서 const 제거
+  MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter App',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/', // ✅ 앱 실행 시 로그인 화면부터 시작
-      routes: {
-        '/': (context) => LoginScreen(), // 로그인 화면이 먼저 보이도록 설정
-        '/dashboard': (context) => DashboardScreen(),
-      },
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+          if (snapshot.hasData) {
+            return DashboardScreen();
+          }
+          return LoginScreen();
+        },
+      ),
     );
   }
 }

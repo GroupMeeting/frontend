@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/social_buttons.dart'; // ✅ 소셜 로그인 버튼 import
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -37,28 +38,26 @@ class LoginScreen extends StatelessWidget {
 
             // ✅ 로그인 버튼
             ElevatedButton(
-            onPressed: () {
-              print('[DEBUG] 로그인 버튼 클릭됨');
-              if (Navigator.of(context).canPop()) {
-                print('[DEBUG] 이미 대시보드가 열려 있음, 이동 생략');
-                return;
-              }
-              Future.delayed(Duration(milliseconds: 300), () {
-                if (context.mounted) {
-                  print('[DEBUG] 대시보드로 이동');
-                  Navigator.of(context).pushReplacementNamed('/dashboard');
+              onPressed: () async {
+                try {
+                  await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    email: 'user@example.com', // 실제 이메일 입력
+                    password: 'password', // 실제 비밀번호 입력
+                  );
+                  print('로그인 성공');
+                } catch (e) {
+                  print('로그인 실패: $e');
                 }
-              });
-            },
-            child: Text('로그인', style: TextStyle(color: Colors.white)),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+              },
+              child: Text('로그인', style: TextStyle(color: Colors.white)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
               ),
             ),
-          ),
 
             SizedBox(height: 20),
 
