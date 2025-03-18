@@ -3,6 +3,8 @@ import 'widgets/bottom_nav_bar.dart';
 import 'calendar_screen.dart'; // ✅ 캘린더 화면 추가
 import 'group_list_screen.dart'; // ✅ 그룹 리스트 화면 추가
 import 'my_page_screen.dart'; // ✅ 마이페이지 화면 추가
+import 'meeting_list_screen.dart';
+import 'group_info_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -12,9 +14,10 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0; // ✅ 현재 선택된 탭 인덱스
   final List<Widget> _screens = [
-    CalendarScreen(), // ✅ 캘린더 화면
-    GroupListScreen(), // ✅ 그룹 리스트 화면
-    MyPageScreen(), // ✅ 마이페이지 화면
+    CalendarScreen(),
+    MeetingListScreen(),
+    GroupInfoScreen(),
+    MyPageScreen(),
   ];
 
   @override
