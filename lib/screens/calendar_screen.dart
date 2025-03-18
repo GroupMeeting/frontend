@@ -22,6 +22,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
         children: [
           // 캘린더 위젯
           TableCalendar(
+            locale: 'ko_KR',  // ✅ 한국어 로케일
             focusedDay: _focusedDay,
             firstDay: DateTime(2000),
             lastDay: DateTime(2100),

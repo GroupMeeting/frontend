@@ -1,3 +1,16 @@
+buildscript {
+    ext.kotlin_version = '1.9.20' // Kotlin 버전 확인
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.1' // Android Gradle 플러그인 버전
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.15' // Google Services 플러그인
+    }
+}
+
 allprojects {
     repositories {
         google()
@@ -16,3 +29,5 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
+apply plugin: 'com.google.gms.google-services'
