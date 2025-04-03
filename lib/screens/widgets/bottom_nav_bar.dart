@@ -19,10 +19,22 @@ class BottomNavBar extends StatelessWidget {
       selectedItemColor: Theme.of(context).colorScheme.secondary,
       unselectedItemColor: Colors.grey,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: '캘린더'),
-        BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: '모임리스트'),
-        BottomNavigationBarItem(icon: Icon(Icons.info), label: '그룹정보'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: '마이페이지'),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_today),
+          label: '캘린더',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.group),
+          label: '동아리',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.event),
+          label: '모임',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: '마이페이지',
+        ),
       ],
     );
   }

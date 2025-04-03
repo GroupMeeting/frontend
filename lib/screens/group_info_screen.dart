@@ -4,8 +4,8 @@ class GroupInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('그룹 정보')),
-      body: Center(child: Text('그룹 정보 페이지')),
+      appBar: AppBar(title: Text('모임')),
+      body: Center(child: Text('현재 참여한 모임이 없습니다.')),
     );
   }
 } 

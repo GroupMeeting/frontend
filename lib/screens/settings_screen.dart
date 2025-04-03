@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -22,20 +21,14 @@ class SettingsScreen extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('로그아웃'),
-            onTap: () async {
-              try {
-                await FirebaseAuth.instance.signOut();
-                final GoogleSignIn googleSignIn = GoogleSignIn();
-                await googleSignIn.signOut();
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  '/',
-                  (Route<dynamic> route) => false,
-                );
-              } catch (e) {
-                print('로그아웃 실패: $e');
-              }
+            title: const Text('로그아웃'),
+            onTap: () {
+              // 로그아웃 처리: 단순히 로그인 페이지로 이동
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/', // 로그인 화면 라우트 이름
+                (Route<dynamic> route) => false,
+              );
             },
           ),
         ],
